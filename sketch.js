@@ -17,7 +17,12 @@ const sketch = function (p) {
             window.max.bindInlet('controls', function (gravity, speed) {
                 PhysicsEngine.world.gravity.scale = gravity;
                 PhysicsEngine.engine.timing.timeScale = speed;
-            })
+            });
+            window.max.bindInlet('randomize', function () {
+                obstacles.forEach((obstacle) => {
+                    obstacle.rotation = Math.random(180);
+                })
+            });
         });
 
         p.createCanvas(171, 160);
