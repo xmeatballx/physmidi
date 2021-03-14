@@ -7,24 +7,26 @@ const sketch = function (p) {
 
     p.setup = () => {
         PhysicsEngine.run();
-        window.max.bindInlet('spawn', function (b, slider, friction, bounce, lifespan) {
-            let marble = new Marble(PhysicsEngine, slider, 5);
-            marble.body.friction = friction;
-            marble.body.restitution = bounce;
-            marble.lifespan = lifespan / p.frameRate();
-            marbles.push(marble);
-            marble.reportCollisions(PhysicsEngine.engine);
-            window.max.bindInlet('controls', function (gravity, speed) {
-                PhysicsEngine.world.gravity.scale = gravity;
-                PhysicsEngine.engine.timing.timeScale = speed;
+        if (window.max) {
+            window.max.bindInlet('spawn', function (b, slider, friction, bounce, lifespan) {
+                let marble = new Marble(PhysicsEngine, slider, 5);
+                marble.body.friction = friction;
+                marble.body.restitution = bounce;
+                marble.lifespan = lifespan / p.frameRate();
+                marbles.push(marble);
+                marble.reportCollisions(PhysicsEngine.engine);
+                window.max.bindInlet('controls', function (gravity, speed) {
+                    PhysicsEngine.world.gravity.scale = gravity;
+                    PhysicsEngine.engine.timing.timeScale = speed;
+                });
+                window.max.bindInlet('randomize', function () {
+                    obstacles.forEach((obstacle) => {
+                        obstacle.rotation = Math.random(180);
+                        Body.rotate(obstacle.body, obstacle.rotation);
+                    })
+                });
             });
-            window.max.bindInlet('randomize', function () {
-                obstacles.forEach((obstacle) => {
-                    // obstacle.rotation = Math.random(180);
-                    Body.rotate(obstacle.body, Math.random(180));
-                })
-            });
-        });
+        }
 
         p.createCanvas(171, 160);
         p.rectMode(p.CENTER);

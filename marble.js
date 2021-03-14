@@ -11,8 +11,10 @@ class Marble {
 
     reportCollisions(engine) {
         Matter.Events.on(engine, 'collisionStart', (event) => {
-            if (event.pairs[0].bodyA.id != this.body.id) window.max.outlet(event.pairs[0].bodyA.id);
-            else if (event.pairs[0].bodyB.id != this.body.id) window.max.outlet(event.pairs[0].bodyB.id);
+            if (window.max) {
+                if (event.pairs[0].bodyA.id != this.body.id) window.max.outlet(event.pairs[0].bodyA.id);
+                else if (event.pairs[0].bodyB.id != this.body.id) window.max.outlet(event.pairs[0].bodyB.id);
+            }
         })
     }
 
