@@ -52,7 +52,8 @@ const sketch = function (p) {
         obstacles.forEach((obstacle) => {
             mouseDistance = getDistance(new p5.Vector(obstacle.x, obstacle.y), new p5.Vector(p.mouseX, p.mouseY));
             if (mouseDistance < 10) {
-                Body.rotate(obstacle.body, mouseDistance / 25);
+                obstacle.rotation = mouseDistance / 25;
+                Body.rotate(obstacle.body, obstacle.rotation);
             }
         })
     }
