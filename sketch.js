@@ -21,8 +21,8 @@ const sketch = function (p) {
                 });
                 window.max.bindInlet('randomize', function () {
                     obstacles.forEach((obstacle) => {
-                        obstacle.rotation = Math.random(180);
-                        Body.rotate(obstacle.body, obstacle.rotation);
+                        obstacle.rotation += Math.random(180);
+                        Matter.Body.rotate(obstacle.body, obstacle.rotation);
                     })
                 });
             });
@@ -52,8 +52,8 @@ const sketch = function (p) {
         obstacles.forEach((obstacle) => {
             mouseDistance = getDistance(new p5.Vector(obstacle.x, obstacle.y), new p5.Vector(p.mouseX, p.mouseY));
             if (mouseDistance < 10) {
-                obstacle.rotation = mouseDistance / 25;
-                Body.rotate(obstacle.body, obstacle.rotation);
+                obstacle.rotation += mouseDistance / 25;
+                Matter.Body.rotate(obstacle.body, obstacle.rotation);
             }
         })
     }

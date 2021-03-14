@@ -4,11 +4,11 @@ class Obstacle {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.rotation = Math.random(90);
-        this.body = Bodies.rectangle(this.x, this.y, this.width, this.height);
+        this.rotation = 0;
+        this.body = Bodies.rectangle(this.x, this.y, this.width, this.height - 2);
         Matter.Body.setStatic(this.body, true);
         this.body.restitution = 0;
-        Body.rotate(this.body, this.rotation);
+        Matter.Body.rotate(this.body, this.rotation);
         engine.add(engine.world, this.body);
     }
 
