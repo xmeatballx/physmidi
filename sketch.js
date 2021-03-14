@@ -21,7 +21,7 @@ const sketch = function (p) {
             window.max.bindInlet('randomize', function () {
                 obstacles.forEach((obstacle) => {
                     // obstacle.rotation = Math.random(180);
-                    obstacle.body.rotate(Math.random(180));
+                    Body.rotate(obstacle.body, Math.random(180));
                 })
             });
         });
