@@ -8,8 +8,8 @@ class Obstacle {
         this.body = Bodies.rectangle(this.x, this.y, this.width, this.height);
         Matter.Body.setStatic(this.body, true);
         this.body.restitution = 0;
-        engine.add(engine.world, this.body);
         Body.rotate(this.body, this.rotation);
+        engine.add(engine.world, this.body);
     }
 
     draw(p) {
