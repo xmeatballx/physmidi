@@ -15,7 +15,7 @@ class Obstacle {
     draw(p) {
         p.push();
         p.translate(this.body.position.x, this.body.position.y)
-        p.rotate(this.rotation);
+        p.rotate(this.body.angle);
         p.stroke(1);
         p.rect(0, 0, this.width, this.height);
         p.pop();
