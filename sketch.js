@@ -21,7 +21,7 @@ const sketch = function (p) {
                 });
                 window.max.bindInlet('randomize', function () {
                     obstacles.forEach((obstacle) => {
-                        Matter.Body.rotate(obstacle.body, Math.random(180));
+                        Matter.Body.rotate(obstacle.body, Math.random(15, 160));
                     })
                 });
             });
@@ -51,9 +51,15 @@ const sketch = function (p) {
         obstacles.forEach((obstacle) => {
             mouseDistance = getDistance(new p5.Vector(obstacle.x, obstacle.y), new p5.Vector(p.mouseX, p.mouseY));
             if (mouseDistance < 10) {
-                Matter.Body.rotate(obstacle.body, obstacle.angle + mouseDistance / 25);
+                Matter.Body.rotate(obstacle.body, obstacle.rotation + mouseDistance / 25);
             }
         })
+    }
+
+    p.mouseClicked = () => {
+        let marble = new Marble(PhysicsEngine, 47, 5);
+        marbles.push(marble);
+        marble.reportCollisions(PhysicsEngine.engine);
     }
 
     p.draw = () => {

@@ -9,11 +9,17 @@ class Marble {
         this.body.friction = 20;
     }
 
+    getMagnitude(velocityX, velocityY) {
+        return Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+    }
+
     reportCollisions(engine) {
         Matter.Events.on(engine, 'collisionStart', (event) => {
+
+            console.log(this.getMagnitude(this.body.velocity.x, this.body.velocity.y));
             if (window.max) {
-                if (event.pairs[0].bodyA.id != this.body.id) window.max.outlet(event.pairs[0].bodyA.id);
-                else if (event.pairs[0].bodyB.id != this.body.id) window.max.outlet(event.pairs[0].bodyB.id);
+                if (event.pairs[0].bodyA.id != this.body.id) window.max.outlet(event.pairs[0].bodyA.id, this.getMagnitude(this.body.velocity.x, this.body.velocity.y));
+                else if (event.pairs[0].bodyB.id != this.body.id) window.max.outlet(event.pairs[0].bodyB.id, this.getMagnitude(this.body.velocity.x, this.body.velocity.y));
             }
         })
     }
