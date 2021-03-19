@@ -56,12 +56,6 @@ const sketch = function (p) {
         })
     }
 
-    p.mouseClicked = () => {
-        let marble = new Marble(PhysicsEngine, 47, 5);
-        marbles.push(marble);
-        marble.reportCollisions(PhysicsEngine.engine);
-    }
-
     p.draw = () => {
         p.background(125, 125, 125);
         obstacles.forEach((obstacle) => {
