@@ -57,6 +57,16 @@ const sketch = function (p) {
     }
 
     p.draw = () => {
+        if (p.frameRate < 15) {
+            PhysicsEngine.engine.positionIterations = 1;
+            PhysicsEngine.engine.velocityIterations = 1;
+            PhysicsEngine.engine.constraintIterations = 1;
+        } else {
+            PhysicsEngine.engine.positionIterations = 6;
+            PhysicsEngine.engine.velocityIterations = 4;
+            PhysicsEngine.engine.constraintIterations = 2;
+        }
+
         p.background(125, 125, 125);
         obstacles.forEach((obstacle) => {
             obstacle.draw(p);
